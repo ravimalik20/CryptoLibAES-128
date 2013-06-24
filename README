@@ -1,0 +1,7 @@
+AES-128 implementation.
+
+Author: Ravi Malik
+
+The sole intention of creating this AES-128 library was learning. I was making some projects which required the use of block ciphers. And AES is the best block cipher that i came across. And i knew that there are implementations of AES available on the internet which are both super optimised and highly secure. But i decided to write my own because i wish to learn rather than using some ready made tool infront of me. In future this library would grow into an optimised and secure one. Many issues would arise which i will fix and others will help me fix and learn alongside as there would arise many situations which would test one's skills.
+
+Happy Learning :D
