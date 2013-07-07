@@ -1,3 +1,24 @@
+/*==========================================================================================
+||	
+||	Copyright (C) 2013  Ravi Malik
+||	
+||	This program is free software; you can redistribute it and/or
+||	modify it under the terms of the GNU General Public License
+||	as published by the Free Software Foundation; either version 2
+||	of the License, or (at your option) any later version.
+||	
+||	This program is distributed in the hope that it will be useful,
+||	but WITHOUT ANY WARRANTY; without even the implied warranty of
+||	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+||	GNU General Public License for more details.
+||	
+||	You should have received a copy of the GNU General Public License
+||	along with this program; if not, write to the Free Software
+||	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+||	
+||
+*==========================================================================================*/
+
 #include"aes.h"
 #include<stdio.h>
 
@@ -92,7 +113,6 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 	char padd_size;
 	padd_size=data.b[3][3];
 	int c=(int)padd_size;
-	//printf("Padd_size:%d",c);
 	j=3;
 	k=3;
 	while(c!=0)
@@ -100,16 +120,13 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 		{	k=3;
 			j--;
 		}
-		//printf("\nData:%d",data.b[j][k]);
 		if(data.b[j][k]!=padd_size)
-		{	//printf("Error!!");	
-			return -1;
+		{	return -1;
 		}
 		k--;	
 		c--;	
 	}
 	c=16-((int)padd_size);
-	//printf("Padd_size:%d",c);
 	j=0;
 	k=0;
 	while(c!=0)
@@ -118,7 +135,6 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 			j++;
 		}
 		fwrite(&data.b[j][k],sizeof(data.b[j][k]),1,fp_o);
-		//printf("%c",data.b[j][k]);		
 		k++;
 		c--;
 	}
