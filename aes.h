@@ -111,6 +111,27 @@ unsigned char rcon[4][10]={
 // Defined in MixColumn.h and importing from there..
 
 /* ############### Primitive Functions ################## */
+
+struct block prepare_key(unsigned char s[16])
+{	struct block key;	
+	int i,j;	// Counter for key
+	int k=0;	// Counter for string.
+	for(i=0;i<4;i++)
+	{	for(j=0;j<4;j++)
+		{	key.b[i][j]=s[k];
+			k++;
+		}
+	}
+	return key;
+}
+
+unsigned long file_size(FILE *fp)
+{	fseek(fp,0,SEEK_END);
+	unsigned long size=ftell(fp);
+	fseek(fp,0,SEEK_SET);
+	return size;
+}
+
 void swap(unsigned char *a,unsigned char *b)
 {	unsigned char temp;
 	temp=*a;
