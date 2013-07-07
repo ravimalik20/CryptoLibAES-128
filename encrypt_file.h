@@ -92,7 +92,7 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 	char padd_size;
 	padd_size=data.b[3][3];
 	int c=(int)padd_size;
-	printf("Padd_size:%d",c);
+	//printf("Padd_size:%d",c);
 	j=3;
 	k=3;
 	while(c!=0)
@@ -100,14 +100,16 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 		{	k=3;
 			j--;
 		}
-		if(data.b[j][k]!=c)
-		{	return -1;
+		//printf("\nData:%d",data.b[j][k]);
+		if(data.b[j][k]!=padd_size)
+		{	//printf("Error!!");	
+			return -1;
 		}
 		k--;	
 		c--;	
 	}
 	c=16-((int)padd_size);
-	printf("Padd_size:%d",c);
+	//printf("Padd_size:%d",c);
 	j=0;
 	k=0;
 	while(c!=0)
@@ -116,6 +118,7 @@ int decrypt_file(FILE *fp_i, struct block key, FILE *fp_o)
 			j++;
 		}
 		fwrite(&data.b[j][k],sizeof(data.b[j][k]),1,fp_o);
+		//printf("%c",data.b[j][k]);		
 		k++;
 		c--;
 	}
